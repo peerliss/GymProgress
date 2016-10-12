@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">GymProgress</string>
+
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="or">Or</string>
+    <string name="sign_in_with_facebook">Login with Facebook</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="sign_up">Sign up</string>
+    <string name="login">Login</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="register">Register</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="title_activity_navigation">NavigationActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_individual">IndividualActivity</string>
+    <string name="title_activity_add_exercise">AddExerciseActivity</string>
+    <string name="exercise_name">Exercise Name</string>
+    <string name="weight">Weight</string>
+    <string name="reps">Reps</string>
+    <string name="add_set">Add Set</string>
+    <string name="clear">Clear</string>
+    <string name="done">Done</string>
+    <string name="title_activity_today">TodayActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="_1">1</string>
+    <string name="_33kgs">33kgs</string>
+    <string name="_12_reps">12 reps</string>
+    <string name="title_activity_track">TrackActivity</string>
+    <string name="body_fat">Body Fat (%)</string>
+    <string name="save">Save</string>
+    <string name="date">Date</string>
+    <string name="set">Set</string>
+    <string name="logout">Logout</string>
+    <string name="gym_tracker">Gym Tracker</string>
+    <string name="reach_your_goals">Reach your goals</string>
+    <string name="today">Today</string>
+    <string name="track">Track</string>
+    <string name="add_exercise">Add Exercise</string>
+    <string name="enter_body_fat">Enter Body Fat %</string>
+    <string name="enter_weight">Enter weight</string>
+    <string name="categories">Categories</string>
+</resources>
