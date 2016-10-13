@@ -59,4 +59,12 @@
     <string name="enter_weight">Enter weight</string>
     <string name="categories">Categories</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="shoulders">Shoulders</string>
+    <string name="biceps">Biceps</string>
+    <string name="triceps">Triceps</string>
+    <string name="chest">Chest</string>
+    <string name="back">Back</string>
+    <string name="abs">Abs</string>
+    <string name="cardio">Cardio</string>
+    <string name="legs">Legs</string>
 </resources>

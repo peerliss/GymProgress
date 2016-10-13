@@ -64,7 +64,7 @@ public class TrackFragment extends Fragment {
                 case 0:
                     return new EnterWeightFragment();
                 case 1:
-                    return new EnterWeightFragment();
+                    return new HistoryFragment();
                 case 2:
                     return new EnterWeightFragment();
             }
