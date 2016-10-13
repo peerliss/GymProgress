@@ -121,4 +121,8 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    public void shouldersOnClick(View view) {
+        startActivity(new Intent(MainActivity.this, IndividualActivity.class));
+    }
 }

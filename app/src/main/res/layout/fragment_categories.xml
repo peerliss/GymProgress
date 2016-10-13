@@ -28,6 +28,7 @@
                 android:layout_marginEnd="3dp"
                 android:layout_marginRight="3dp"
                 android:layout_weight="1"
+                android:onClick="shouldersOnClick"
                 android:background="#9DB0C4"
                 android:gravity="center"
                 android:orientation="vertical">

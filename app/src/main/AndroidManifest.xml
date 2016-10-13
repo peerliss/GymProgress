@@ -27,8 +27,15 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".IndividualActivity"
+            android:label="@string/title_activity_individual"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
-
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mad.gymprogress.MainActivity" />
         </activity>
     </application>
 
