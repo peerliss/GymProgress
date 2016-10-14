@@ -28,9 +28,9 @@
                 android:layout_marginEnd="3dp"
                 android:layout_marginRight="3dp"
                 android:layout_weight="1"
-                android:onClick="shouldersOnClick"
                 android:background="#9DB0C4"
                 android:gravity="center"
+                android:onClick="shouldersOnClick"
                 android:orientation="vertical">
 
                 <TextView
@@ -49,6 +49,7 @@
                 android:layout_weight="1"
                 android:background="#6D9FC7"
                 android:gravity="center"
+                android:onClick="bicepsOnClick"
                 android:orientation="vertical">
 
                 <TextView
@@ -83,6 +84,7 @@
                 android:layout_weight="1"
                 android:background="#6D9FC7"
                 android:gravity="center"
+                android:onClick="tricepsOnClick"
                 android:orientation="vertical">
 
                 <TextView
@@ -102,6 +104,7 @@
                 android:layout_weight="1"
                 android:background="#9DB0C4"
                 android:gravity="center"
+                android:onClick="chestOnClick"
                 android:orientation="vertical">
 
                 <TextView
@@ -135,6 +138,7 @@
                 android:layout_weight="1"
                 android:background="#9DB0C4"
                 android:gravity="center"
+                android:onClick="backOnClick"
                 android:orientation="vertical">
 
                 <TextView
@@ -154,6 +158,7 @@
                 android:layout_weight="1"
                 android:background="#6D9FC7"
                 android:gravity="center"
+                android:onClick="absOnClick"
                 android:orientation="vertical">
 
                 <TextView
@@ -187,6 +192,7 @@
                 android:layout_weight="1"
                 android:background="#6D9FC7"
                 android:gravity="center"
+                android:onClick="legsOnClick"
                 android:orientation="vertical">
 
                 <TextView
@@ -206,6 +212,7 @@
                 android:layout_weight="1"
                 android:background="#9DB0C4"
                 android:gravity="center"
+                android:onClick="cardioOnClick"
                 android:orientation="vertical">
 
                 <TextView

@@ -3,6 +3,8 @@ package com.mad.gymprogress;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -21,13 +23,6 @@ public class AddExerciseActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Exercise exercise = null;
-
-//        Bundle exerciseBundle = getIntent().getBundleExtra(ExerciseAdapter.ViewHolder.EXERCISE_INTENT);
-//        if (exerciseBundle != null) {
-//            exercise = (Exercise) exerciseBundle.getSerializable(ExerciseAdapter.ViewHolder.EXERCISE_INTENT);
-//        }
-
         Bundle exerciseBundle = getIntent().getBundleExtra(ExerciseAdapter.ViewHolder.EXERCISE_BUNDLE);
 
         TextView exerciseTitle = (TextView) findViewById(R.id.exerciseTitle);
@@ -36,6 +31,13 @@ public class AddExerciseActivity extends AppCompatActivity {
         Button addSetBtn = (Button) findViewById(R.id.addSetBtn);
         Button clearBtn = (Button) findViewById(R.id.clearBtn);
         Button doneBtn = (Button) findViewById(R.id.addExerciseDoneBtn);
+
+        doneBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         try {
             String exerciseTitleString = exerciseBundle.getString(ExerciseAdapter.ViewHolder.EXERCISE_NAME);

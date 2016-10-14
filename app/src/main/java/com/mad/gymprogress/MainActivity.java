@@ -22,6 +22,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static final String EXERCISE_STRING = "Exercise_String";
+    public static final String EXERCISE_BUNDLE = "Exercise_Bundle";
     android.support.v4.app.FragmentManager mFragmentManager;
     android.support.v4.app.FragmentTransaction mFragmentTransaction;
     private FirebaseAuth mAuth;
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity
         // Inflate initial fragment to be viewed
         mFragmentManager = getSupportFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
-        mFragmentTransaction.replace(R.id.containerView, new TrackFragment()).commit();
+        mFragmentTransaction.replace(R.id.containerView, new CategoriesFragment()).commit();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -113,9 +115,10 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_addExercise) {
             FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.containerView, new CategoriesFragment()).commit();
-        }/* else if (id == R.id.nav_slideshow) {
-
-        }*/
+        } else if (id == R.id.nav_track) {
+            FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.containerView, new TrackFragment()).commit();
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -123,6 +126,50 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void shouldersOnClick(View view) {
-        startActivity(new Intent(MainActivity.this, IndividualActivity.class));
+        Intent intent = new Intent(MainActivity.this, IndividualActivity.class);
+        intent.putExtra(EXERCISE_STRING, "Shoulders");
+        startActivity(intent);
+    }
+
+    public void bicepsOnClick(View view) {
+        Intent intent = new Intent(MainActivity.this, IndividualActivity.class);
+        intent.putExtra(EXERCISE_STRING, "Biceps");
+        startActivity(intent);
+    }
+
+    public void tricepsOnClick(View view) {
+        Intent intent = new Intent(MainActivity.this, IndividualActivity.class);
+        intent.putExtra(EXERCISE_STRING, "Triceps");
+        startActivity(intent);
+    }
+
+    public void chestOnClick(View view) {
+        Intent intent = new Intent(MainActivity.this, IndividualActivity.class);
+        intent.putExtra(EXERCISE_STRING, "Chest");
+        startActivity(intent);
+    }
+
+    public void backOnClick(View view) {
+        Intent intent = new Intent(MainActivity.this, IndividualActivity.class);
+        intent.putExtra(EXERCISE_STRING, "Back");
+        startActivity(intent);
+    }
+
+    public void absOnClick(View view) {
+        Intent intent = new Intent(MainActivity.this, IndividualActivity.class);
+        intent.putExtra(EXERCISE_STRING, "Abs");
+        startActivity(intent);
+    }
+
+    public void legsOnClick(View view) {
+        Intent intent = new Intent(MainActivity.this, IndividualActivity.class);
+        intent.putExtra(EXERCISE_STRING, "Legs");
+        startActivity(intent);
+    }
+
+    public void cardioOnClick(View view) {
+        Intent intent = new Intent(MainActivity.this, IndividualActivity.class);
+        intent.putExtra(EXERCISE_STRING, "Cardio");
+        startActivity(intent);
     }
 }
