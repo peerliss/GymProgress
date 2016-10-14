@@ -1,9 +1,8 @@
-package com.mad.gymprogress;
+package com.mad.gymprogress.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.io.Serializable;
+import com.mad.gymprogress.AddExerciseActivity;
+import com.mad.gymprogress.Model.Exercise;
+import com.mad.gymprogress.R;
+
 import java.util.ArrayList;
 
 /**
@@ -29,7 +31,6 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
     }
 
     @Override
-
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.individual_recyclerview_item, parent, false);
         return new ViewHolder(view);
@@ -84,5 +85,4 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
             context.startActivity(intent);
         }
     }
-
 }

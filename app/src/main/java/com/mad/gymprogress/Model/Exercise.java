@@ -1,4 +1,4 @@
-package com.mad.gymprogress;
+package com.mad.gymprogress.Model;
 
 /**
  * Created by peerliss on 13/10/2016.

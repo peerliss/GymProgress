@@ -67,4 +67,6 @@
     <string name="abs">Abs</string>
     <string name="cardio">Cardio</string>
     <string name="legs">Legs</string>
+    <string name="please_enter_weight_or_fat">Please enter weight and/or body fat %</string>
+    <string name="successfully_added">Successfully added</string>
 </resources>

@@ -1,20 +1,21 @@
 package com.mad.gymprogress;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
+
+import com.mad.gymprogress.Adapter.ExerciseAdapter;
+import com.mad.gymprogress.Model.Exercise;
 
 import java.util.ArrayList;
 
 public class IndividualActivity extends AppCompatActivity {
 
     private static final String INDIVIDUAL_ACTIVITY = "Individual_Activity";
+    private static final String EXERCISE = "Exercise";
     private ArrayList<Exercise> shouldersList = new ArrayList<>();
     private ArrayList<Exercise> bicepsList = new ArrayList<>();
     private ArrayList<Exercise> tricepsList = new ArrayList<>();
@@ -25,6 +26,7 @@ public class IndividualActivity extends AppCompatActivity {
     private ArrayList<Exercise> cardioList = new ArrayList<>();
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mExerciseAdapter;
+    private String exercise = "Shoulders";
     private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
@@ -41,39 +43,67 @@ public class IndividualActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        if (getIntent().getStringExtra(MainActivity.EXERCISE_STRING).matches("Shoulders")) {
-            mExerciseAdapter = new ExerciseAdapter(IndividualActivity.this, shouldersList);
-            mRecyclerView.setAdapter(mExerciseAdapter);
-            populateShouldersList();
-        } else if (getIntent().getStringExtra(MainActivity.EXERCISE_STRING).matches("Biceps")) {
-            mExerciseAdapter = new ExerciseAdapter(IndividualActivity.this, bicepsList);
-            mRecyclerView.setAdapter(mExerciseAdapter);
-            populateBicepsList();
-        } else if (getIntent().getStringExtra(MainActivity.EXERCISE_STRING).matches("Triceps")) {
-            mExerciseAdapter = new ExerciseAdapter(IndividualActivity.this, tricepsList);
-            mRecyclerView.setAdapter(mExerciseAdapter);
-            populateTricepsList();
-        } else if (getIntent().getStringExtra(MainActivity.EXERCISE_STRING).matches("Chest")) {
-            mExerciseAdapter = new ExerciseAdapter(IndividualActivity.this, chestList);
-            mRecyclerView.setAdapter(mExerciseAdapter);
-            populateChestList();
-        } else if (getIntent().getStringExtra(MainActivity.EXERCISE_STRING).matches("Back")) {
-            mExerciseAdapter = new ExerciseAdapter(IndividualActivity.this, backList);
-            mRecyclerView.setAdapter(mExerciseAdapter);
-            populateBackList();
-        } else if (getIntent().getStringExtra(MainActivity.EXERCISE_STRING).matches("Abs")) {
-            mExerciseAdapter = new ExerciseAdapter(IndividualActivity.this, absList);
-            mRecyclerView.setAdapter(mExerciseAdapter);
-            populateAbsList();
-        } else if (getIntent().getStringExtra(MainActivity.EXERCISE_STRING).matches("Legs")) {
-            mExerciseAdapter = new ExerciseAdapter(IndividualActivity.this, legsList);
-            mRecyclerView.setAdapter(mExerciseAdapter);
-            populateLegsList();
-        } else if (getIntent().getStringExtra(MainActivity.EXERCISE_STRING).matches("Cardio")) {
-            mExerciseAdapter = new ExerciseAdapter(IndividualActivity.this, cardioList);
-            mRecyclerView.setAdapter(mExerciseAdapter);
-            populateCardioList();
+//        if (savedInstanceState != null) {
+//            exercise = savedInstanceState.getString(EXERCISE);
+//        }
+//        else {
+//            exercise = getIntent().getStringExtra(MainActivity.EXERCISE_STRING);
+//        }
+
+        exercise = getIntent().getStringExtra(MainActivity.EXERCISE_STRING);
+
+//        try {
+            if (exercise.matches("Shoulders")) {
+                mExerciseAdapter = new ExerciseAdapter(IndividualActivity.this, shouldersList);
+                mRecyclerView.setAdapter(mExerciseAdapter);
+                populateShouldersList();
+            } else if (exercise.matches("Biceps")) {
+                mExerciseAdapter = new ExerciseAdapter(IndividualActivity.this, bicepsList);
+                mRecyclerView.setAdapter(mExerciseAdapter);
+                populateBicepsList();
+            } else if (exercise.matches("Triceps")) {
+                mExerciseAdapter = new ExerciseAdapter(IndividualActivity.this, tricepsList);
+                mRecyclerView.setAdapter(mExerciseAdapter);
+                populateTricepsList();
+            } else if (exercise.matches("Chest")) {
+                mExerciseAdapter = new ExerciseAdapter(IndividualActivity.this, chestList);
+                mRecyclerView.setAdapter(mExerciseAdapter);
+                populateChestList();
+            } else if (exercise.matches("Back")) {
+                mExerciseAdapter = new ExerciseAdapter(IndividualActivity.this, backList);
+                mRecyclerView.setAdapter(mExerciseAdapter);
+                populateBackList();
+            } else if (exercise.matches("Abs")) {
+                mExerciseAdapter = new ExerciseAdapter(IndividualActivity.this, absList);
+                mRecyclerView.setAdapter(mExerciseAdapter);
+                populateAbsList();
+            } else if (exercise.matches("Legs")) {
+                mExerciseAdapter = new ExerciseAdapter(IndividualActivity.this, legsList);
+                mRecyclerView.setAdapter(mExerciseAdapter);
+                populateLegsList();
+            } else if (exercise.matches("Cardio")) {
+                mExerciseAdapter = new ExerciseAdapter(IndividualActivity.this, cardioList);
+                mRecyclerView.setAdapter(mExerciseAdapter);
+                populateCardioList();
+//            }
+//        }
+//        catch (Exception e) {
+//            e.printStackTrace();
+//
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        exercise = getIntent().getStringExtra(MainActivity.EXERCISE_STRING);
+        outState.putString(EXERCISE, exercise);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        exercise = savedInstanceState.getString(EXERCISE);
     }
 
     private void populateShouldersList() {

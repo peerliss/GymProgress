@@ -13,6 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -21,6 +24,8 @@ public class TrackFragment extends Fragment {
     TabLayout trackLayout;
     ViewPager viewPager;
     int int_items = 3;
+    private FirebaseAuth mAuth;
+    private DatabaseReference databaseReference;
 
 /*
     public TrackFragment() {
@@ -45,6 +50,8 @@ public class TrackFragment extends Fragment {
                 trackLayout.setupWithViewPager(viewPager);
             }
         });
+
+        mAuth = FirebaseAuth.getInstance();
 
         return trackView;
     }
