@@ -72,7 +72,7 @@ public class TrackFragment extends Fragment {
                 case 1:
                     return new HistoryFragment();
                 case 2:
-                    return new EnterWeightFragment();
+                    return new ProgressFragment();
             }
             return null;
         }
