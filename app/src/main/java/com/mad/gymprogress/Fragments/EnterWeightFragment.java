@@ -1,4 +1,4 @@
-package com.mad.gymprogress;
+package com.mad.gymprogress.Fragments;
 
 
 import android.os.Bundle;
@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.mad.gymprogress.R;
 
 import java.util.Date;
 
@@ -36,6 +37,10 @@ public class EnterWeightFragment extends Fragment {
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
     private String uid;
+    private String weightStr;
+    private String fatStr;
+    private int weightInt;
+    private int fatInt;
 
     public EnterWeightFragment() {
         // Required empty public constructor
@@ -61,20 +66,14 @@ public class EnterWeightFragment extends Fragment {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String weightStr = weightEt.getText().toString();
-                String fatStr = fatEt.getText().toString();
+                weightStr = weightEt.getText().toString();
+                fatStr = fatEt.getText().toString();
 
                 if (TextUtils.isEmpty(weightStr) & TextUtils.isEmpty(fatStr)) {
                     Toast.makeText(getContext(), R.string.please_enter_weight_or_fat, Toast.LENGTH_LONG).show();
+                } else {
+                    saveDetails();
                 }
-
-                databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Track");
-                DatabaseReference newTrack = databaseReference.push();
-                newTrack.child("Date").setValue(dateStr);
-                newTrack.child("Weight").setValue(weightStr);
-                newTrack.child("Fat").setValue(fatStr);
-
-                Toast.makeText(getContext(), R.string.successfully_added, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -82,4 +81,13 @@ public class EnterWeightFragment extends Fragment {
         return weightView;
     }
 
+    private void saveDetails() {
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Track");
+        DatabaseReference newTrack = databaseReference.push();
+        newTrack.child("date").setValue(dateStr);
+        newTrack.child("weight").setValue(weightStr);
+        newTrack.child("fat").setValue(fatStr);
+
+        Toast.makeText(getContext(), R.string.successfully_added, Toast.LENGTH_SHORT).show();
+    }
 }

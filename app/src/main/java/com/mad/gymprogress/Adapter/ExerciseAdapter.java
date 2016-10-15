@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.mad.gymprogress.AddExerciseActivity;
+import com.mad.gymprogress.Activities.AddExerciseActivity;
 import com.mad.gymprogress.Model.Exercise;
 import com.mad.gymprogress.R;
 

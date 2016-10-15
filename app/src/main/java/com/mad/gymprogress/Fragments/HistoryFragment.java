@@ -1,4 +1,4 @@
-package com.mad.gymprogress;
+package com.mad.gymprogress.Fragments;
 
 
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mad.gymprogress.Model.Track;
+import com.mad.gymprogress.R;
 
 
 /**
@@ -66,7 +67,7 @@ public class HistoryFragment extends Fragment {
             protected void populateViewHolder(HistoryViewHolder viewHolder, Track model, int position) {
                 viewHolder.setDate(model.getDate());
                 viewHolder.setWeight(model.getWeight());
-                viewHolder.setFat(model.getBodyFat());
+                viewHolder.setFat(model.getFat());
             }
         };
         recyclerView.setAdapter(firebaseRecyclerAdapter);
@@ -86,12 +87,12 @@ public class HistoryFragment extends Fragment {
             trackDate.setText(date);
         }
 
-        public void setWeight(int weight) {
+        public void setWeight(String weight) {
             TextView trackWeight = (TextView) mView.findViewById(R.id.historyItem_weightTv);
             trackWeight.setText(weight);
         }
 
-        public void setFat(int fat) {
+        public void setFat(String fat) {
             TextView trackFat = (TextView) mView.findViewById(R.id.historyItem_fatTv);
             trackFat.setText(fat);
         }

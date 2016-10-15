@@ -8,13 +8,13 @@ import java.util.Date;
 
 public class Track {
     private String date;
-    private int weight;
-    private int bodyFat;
+    private String weight;
+    private String fat;
 
-    public Track(String date, int weight, int bodyFat) {
+    public Track(String date, String weight, String fat) {
         this.date = date;
         this.weight = weight;
-        this.bodyFat = bodyFat;
+        this.fat = fat;
     }
 
     public Track() {
@@ -29,19 +29,19 @@ public class Track {
         this.date = date;
     }
 
-    public int getWeight() {
+    public String getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(String weight) {
         this.weight = weight;
     }
 
-    public int getBodyFat() {
-        return bodyFat;
+    public String getFat() {
+        return fat;
     }
 
-    public void setBodyFat(int bodyFat) {
-        this.bodyFat = bodyFat;
+    public void setFat(String fat) {
+        this.fat = fat;
     }
 }

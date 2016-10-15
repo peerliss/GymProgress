@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.mad.gymprogress.EnterWeightFragment">
+    tools:context="com.mad.gymprogress.Fragments.EnterWeightFragment">
 
     <Space
         android:layout_width="match_parent"
@@ -26,8 +26,10 @@
         android:id="@+id/track_weightEt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:hint="@string/enter_weight"
         android:inputType="number"
+        android:textAlignment="center"
         android:textSize="20sp" />
 
     <TextView
@@ -41,8 +43,10 @@
         android:id="@+id/track_fatEt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:hint="@string/enter_body_fat"
         android:inputType="number"
+        android:textAlignment="center"
         android:textSize="20sp" />
 
     <Space

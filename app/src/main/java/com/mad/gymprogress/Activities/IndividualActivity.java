@@ -1,4 +1,4 @@
-package com.mad.gymprogress;
+package com.mad.gymprogress.Activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.mad.gymprogress.Adapter.ExerciseAdapter;
 import com.mad.gymprogress.Model.Exercise;
+import com.mad.gymprogress.R;
 
 import java.util.ArrayList;
 

@@ -8,8 +8,12 @@
         android:id="@+id/addExerciseTitleLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:gravity="center"
+        android:layout_marginStart="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginTop="21dp"
+        android:gravity="center_horizontal"
         android:orientation="horizontal"
         android:padding="10dp">
 
@@ -41,9 +45,9 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/historyRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginBottom="15dp"
-        android:layout_marginTop="15dp">
+        android:layout_marginTop="5dp">
 
     </android.support.v7.widget.RecyclerView>
 </LinearLayout>

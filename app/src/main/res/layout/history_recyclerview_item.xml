@@ -2,31 +2,36 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
     android:layout_centerHorizontal="true"
-    android:padding="10dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginStart="20dp"
     android:gravity="center"
-    android:layout_margin="20dp">
+    android:orientation="horizontal"
+    android:paddingEnd="12dp"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:paddingStart="12dp"
+    android:paddingTop="12dp">
 
     <TextView
         android:id="@+id/historyItem_date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="@string/_1"/>
+        android:text="@string/_1" />
 
     <TextView
         android:id="@+id/historyItem_weightTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="@string/_33kgs"/>
+        android:text="@string/_33kgs" />
 
     <TextView
         android:id="@+id/historyItem_fatTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="@string/_12_reps"/>
+        android:text="@string/_12_reps" />
 
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.mad.gymprogress;
+package com.mad.gymprogress.Fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mad.gymprogress.Model.Exercise;
+import com.mad.gymprogress.R;
 
 import java.util.ArrayList;
 
