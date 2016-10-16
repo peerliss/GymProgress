@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -33,6 +34,7 @@ public class AddExerciseActivity extends AppCompatActivity {
 
     public static final String ADD_EXERCISE_BUNDLE = "Add_Exercise_Bundle";
     public static final String ADD_EXERCISE_DONE = "Add_Exercise_Done";
+    private static final String ADD_EXERCISE_ACTIVITY = "Add_Exercise_Activity";
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
     private String uid;
@@ -87,7 +89,7 @@ public class AddExerciseActivity extends AppCompatActivity {
                         Toast.makeText(AddExerciseActivity.this, R.string.cannot_add_sets, Toast.LENGTH_LONG).show();
                         return;
                     }
-                    databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Workouts").child("Date").child(dateStr).child(exerciseName).child("Set " + set);
+                    databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Workouts").child(dateStr).child(exerciseName).child("Set " + set);
 
                     if (databaseReference != null) {
                         databaseReference.child("category").setValue(exerciseBundle.getString(ExerciseAdapter.ViewHolder.EXERCISE_CATEGORY));
@@ -105,31 +107,26 @@ public class AddExerciseActivity extends AppCompatActivity {
         doneBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d(ADD_EXERCISE_ACTIVITY, "doneBtn onClick");
                 Intent doneIntent = new Intent(AddExerciseActivity.this, MainActivity.class);
                 doneIntent.putExtra(ADD_EXERCISE_DONE, "doneBtn");
                 startActivity(doneIntent);
             }
         });
 
-        try {
-            exerciseTitle.setText(exerciseName);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         clearBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 weightEt.setText(null);
                 repsEt.setText(null);
-                DatabaseReference clearReference = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Workouts").child("Date").child(dateStr).child(exerciseName);
+                DatabaseReference clearReference = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Workouts").child(dateStr).child(exerciseName);
                 clearReference.removeValue();
             }
         });
     }
 
     protected void checkSet() {
-        if (FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Workouts").child("Date").child(dateStr).child(exerciseName).child("Set " + set).child("weight") != null) {
+        if (FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Workouts").child(dateStr).child(exerciseName).child("Set " + set).child("weight") != null) {
             set++;
         }
     }
@@ -152,7 +149,7 @@ public class AddExerciseActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        DatabaseReference setDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Workouts").child("Date").child(dateStr).child(exerciseName);
+        DatabaseReference setDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Workouts").child(dateStr).child(exerciseName);
         FirebaseRecyclerAdapter<Exercise, AddExerciseViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Exercise, AddExerciseViewHolder>(
                 Exercise.class,
                 R.layout.history_recyclerview_item,
