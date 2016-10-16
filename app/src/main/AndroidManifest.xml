@@ -17,7 +17,7 @@
         </activity>
         <activity
             android:name=".Activities.RegisterActivity"
-            android:label="@string/title_activity_register"
+            android:label="@string/register"
             android:parentActivityName=".Activities.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -26,12 +26,12 @@
         </activity>
         <activity
             android:name=".Activities.MainActivity"
-            android:label="@string/title_activity_main"
+            android:label="@string/app_name"
             android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.IndividualActivity"
-            android:label="@string/title_activity_individual"
+            android:label="@string/exercises"
             android:parentActivityName=".Activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -40,7 +40,7 @@
         </activity>
         <activity
             android:name=".Activities.AddExerciseActivity"
-            android:label="@string/title_activity_add_exercise"
+            android:label="Add exercise"
             android:parentActivityName=".Activities.IndividualActivity"
             android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme.NoActionBar">

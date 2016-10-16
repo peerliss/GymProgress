@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GymProgress</string>
+    <string name="app_name">Gym Progress</string>
 
 
     <!-- Strings related to login -->
@@ -72,4 +72,7 @@
     <string name="please_enter_weight">Please enter weight</string>
     <string name="enter_reps">Please enter reps</string>
     <string name="cannot_add_sets">You cannot add any more sets</string>
+    <string name="clear_all">Clear all</string>
+    <string name="enter_exercise_name">Please enter exercise name</string>
+    <string name="exercises">Exercises</string>
 </resources>

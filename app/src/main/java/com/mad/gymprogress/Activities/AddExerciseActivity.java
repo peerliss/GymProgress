@@ -116,6 +116,8 @@ public class AddExerciseActivity extends AppCompatActivity {
             public void onClick(View v) {
                 weightEt.setText(null);
                 repsEt.setText(null);
+                DatabaseReference clearReference = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Workouts").child("Date").child(dateStr).child(exerciseName);
+                clearReference.removeValue();
             }
         });
     }

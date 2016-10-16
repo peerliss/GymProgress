@@ -1,11 +1,19 @@
 package com.mad.gymprogress.Activities;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.mad.gymprogress.Adapters.ExerciseAdapter;
 import com.mad.gymprogress.Model.Exercise;
@@ -29,6 +37,8 @@ public class IndividualActivity extends AppCompatActivity {
     private RecyclerView.Adapter mExerciseAdapter;
     private String exercise = "Shoulders";
     private RecyclerView.LayoutManager mLayoutManager;
+    private FloatingActionButton addFab;
+    private EditText addCustomExerciseEt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +53,6 @@ public class IndividualActivity extends AppCompatActivity {
 
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-
-//        if (savedInstanceState != null) {
-//            exercise = savedInstanceState.getString(EXERCISE);
-//        }
-//        else {
-//            exercise = getIntent().getStringExtra(MainActivity.EXERCISE_STRING);
-//        }
 
         try {
             if (getIntent().getStringExtra(MainActivity.EXERCISE_STRING) == null) {
@@ -99,6 +102,81 @@ public class IndividualActivity extends AppCompatActivity {
             e.printStackTrace();
 
         }
+
+        addFab = (FloatingActionButton) findViewById(R.id.individual_addExerciseFab);
+        /*addFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Exercise customExercise = new Exercise(exercise, "CUSTOM SHOULDER EXERCISE", 0, 0, 0);
+                returnExerciseList().add(customExercise);
+                mExerciseAdapter.notifyDataSetChanged();
+            }
+        });*/
+
+        addFab.setOnClickListener(new View.OnClickListener() {
+            public String customExerciseStr;
+            public String confirm = "false";
+
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(IndividualActivity.this);
+                builder.setTitle("Please enter exercise name");
+                LayoutInflater layoutInflater = LayoutInflater.from(IndividualActivity.this);
+                View promptView = layoutInflater.inflate(R.layout.add_custom_exercise, null);
+                builder.setView(promptView);
+                addCustomExerciseEt = (EditText) promptView.findViewById(R.id.addCustomExerciseInput);
+
+
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                builder.setCancelable(true);
+
+                builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.d(INDIVIDUAL_ACTIVITY, "AlertDialog_Confirm");
+                        addCustomExercise();
+                    }
+
+                    private void addCustomExercise() {
+                        customExerciseStr = addCustomExerciseEt.getText().toString();
+                        if (!TextUtils.isEmpty(customExerciseStr)) {
+                            Exercise customExercise = new Exercise(exercise, customExerciseStr, 0, 0, 0);
+                            returnExerciseList().add(customExercise);
+                            mExerciseAdapter.notifyDataSetChanged();
+                        } else
+                            Toast.makeText(IndividualActivity.this, R.string.enter_exercise_name, Toast.LENGTH_SHORT).show();
+                    }
+                });
+                builder.create();
+                builder.show();
+            }
+        });
+    }
+
+    protected ArrayList<Exercise> returnExerciseList() {
+        if (exercise.matches("Shoulders")) {
+            return shouldersList;
+        } else if (exercise.matches("Biceps")) {
+            return bicepsList;
+        } else if (exercise.matches("Triceps")) {
+            return tricepsList;
+        } else if (exercise.matches("Chest")) {
+            return chestList;
+        } else if (exercise.matches("Back")) {
+            return backList;
+        } else if (exercise.matches("Abs")) {
+            return absList;
+        } else if (exercise.matches("Legs")) {
+            return legsList;
+        } else if (exercise.matches("Cardio")) {
+            return cardioList;
+        }
+        return null;
     }
 
     @Override
