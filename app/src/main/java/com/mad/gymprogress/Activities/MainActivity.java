@@ -16,6 +16,7 @@ import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.mad.gymprogress.Fragments.CategoriesFragment;
+import com.mad.gymprogress.Fragments.WorkoutsFragment;
 import com.mad.gymprogress.R;
 import com.mad.gymprogress.Fragments.TrackFragment;
 
@@ -34,10 +35,16 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Inflate initial fragment to be viewed
-        mFragmentManager = getSupportFragmentManager();
-        mFragmentTransaction = mFragmentManager.beginTransaction();
-        mFragmentTransaction.replace(R.id.containerView, new CategoriesFragment()).commit();
+        if (getIntent().getStringExtra(AddExerciseActivity.ADD_EXERCISE_DONE) != null) {
+            mFragmentManager = getSupportFragmentManager();
+            mFragmentTransaction = mFragmentManager.beginTransaction();
+            mFragmentTransaction.replace(R.id.containerView, new WorkoutsFragment()).commit();
+        } else {
+            // Inflate initial fragment to be viewed
+            mFragmentManager = getSupportFragmentManager();
+            mFragmentTransaction = mFragmentManager.beginTransaction();
+            mFragmentTransaction.replace(R.id.containerView, new CategoriesFragment()).commit();
+        }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -103,6 +110,9 @@ public class MainActivity extends AppCompatActivity
         switch (id) {
             case R.id.action_logout:
                 mAuth.signOut();
+            case R.id.action_addExercise:
+                FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.containerView, new CategoriesFragment()).commit();
         }
 
         return super.onOptionsItemSelected(item);
@@ -117,7 +127,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_today) {
             // Handle the today action
             FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.containerView, new TrackFragment()).commit();
+            fragmentTransaction.replace(R.id.containerView, new WorkoutsFragment()).commit();
         } else if (id == R.id.nav_addExercise) {
             FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.containerView, new CategoriesFragment()).commit();

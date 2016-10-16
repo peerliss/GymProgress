@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_today"
-        android:icon="@drawable/ic_menu_camera"
-        android:title="@string/today" />
+        android:icon="@drawable/ic_action_workout"
+        android:title="@string/workout_history" />
     <item
         android:id="@+id/nav_track"
-        android:icon="@drawable/ic_menu_gallery"
+        android:icon="@drawable/ic_action_track"
         android:title="@string/track" />
     <item
         android:id="@+id/nav_addExercise"
-        android:icon="@drawable/ic_menu_slideshow"
+        android:icon="@drawable/ic_action_add"
         android:title="@string/add_exercise" />
 </menu>

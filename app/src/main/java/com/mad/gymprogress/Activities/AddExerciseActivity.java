@@ -1,7 +1,9 @@
 package com.mad.gymprogress.Activities;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mad.gymprogress.Adapters.ExerciseAdapter;
 import com.mad.gymprogress.Fragments.HistoryFragment;
+import com.mad.gymprogress.Fragments.WorkoutsFragment;
 import com.mad.gymprogress.Model.Exercise;
 import com.mad.gymprogress.Model.Track;
 import com.mad.gymprogress.R;
@@ -29,6 +32,7 @@ import com.mad.gymprogress.R;
 public class AddExerciseActivity extends AppCompatActivity {
 
     public static final String ADD_EXERCISE_BUNDLE = "Add_Exercise_Bundle";
+    public static final String ADD_EXERCISE_DONE = "Add_Exercise_Done";
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
     private String uid;
@@ -68,7 +72,7 @@ public class AddExerciseActivity extends AppCompatActivity {
         repsEt = (EditText) findViewById(R.id.repsEt);
         Button addSetBtn = (Button) findViewById(R.id.addSetBtn);
         Button clearBtn = (Button) findViewById(R.id.clearBtn);
-        Button doneBtn = (Button) findViewById(R.id.addExerciseDoneBtn);
+        final Button doneBtn = (Button) findViewById(R.id.addExerciseDoneBtn);
 
         dateStr = (String) DateFormat.format("dd-MM-yy", new java.util.Date());
         exerciseName = exerciseBundle.getString(ExerciseAdapter.ViewHolder.EXERCISE_NAME);
@@ -101,7 +105,9 @@ public class AddExerciseActivity extends AppCompatActivity {
         doneBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent doneIntent = new Intent(AddExerciseActivity.this, MainActivity.class);
+                doneIntent.putExtra(ADD_EXERCISE_DONE, "doneBtn");
+                startActivity(doneIntent);
             }
         });
 
