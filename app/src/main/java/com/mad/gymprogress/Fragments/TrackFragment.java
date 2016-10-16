@@ -22,7 +22,7 @@ public class TrackFragment extends Fragment {
 
     TabLayout trackLayout;
     ViewPager viewPager;
-    int int_items = 3;
+    int int_items = 2;
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
 

@@ -69,4 +69,7 @@
     <string name="legs">Legs</string>
     <string name="please_enter_weight_or_fat">Please enter weight and/or body fat %</string>
     <string name="successfully_added">Successfully added</string>
+    <string name="please_enter_weight">Please enter weight</string>
+    <string name="enter_reps">Please enter reps</string>
+    <string name="cannot_add_sets">You cannot add any more sets</string>
 </resources>

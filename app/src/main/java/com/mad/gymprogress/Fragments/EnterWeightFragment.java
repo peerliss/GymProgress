@@ -56,7 +56,7 @@ public class EnterWeightFragment extends Fragment {
         fatEt = (EditText) weightView.findViewById(R.id.track_fatEt);
         saveBtn = (Button) weightView.findViewById(R.id.weight_saveBtn);
 
-        dateStr = (String) DateFormat.format("dd/MM/yyyy", new java.util.Date());
+        dateStr = (String) DateFormat.format("dd/MM/yy", new java.util.Date());
         mAuth = FirebaseAuth.getInstance();
 
         FirebaseUser user = mAuth.getCurrentUser();

@@ -1,4 +1,4 @@
-package com.mad.gymprogress.Adapter;
+package com.mad.gymprogress.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -39,7 +39,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Exercise exercise = exerciseArrayList.get(position);
-        holder.exerciseListTv.setText(exercise.getmName());
+        holder.exerciseListTv.setText(exercise.getname());
     }
 
     @Override
@@ -68,10 +68,10 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
         public void onClick(View v) {
             int position = getAdapterPosition();
             Exercise exercise = exerciseArrayList.get(position);
-            String exerciseCategory = exercise.getmCategory();
-            String exerciseName = exercise.getmName();
-            int exerciseWeight = exercise.getmWeight();
-            int exerciseReps = exercise.getmReps();
+            String exerciseCategory = exercise.getcategory();
+            String exerciseName = exercise.getname();
+            int exerciseWeight = exercise.getweight();
+            int exerciseReps = exercise.getreps();
 
             Intent intent = new Intent(context, AddExerciseActivity.class);
 

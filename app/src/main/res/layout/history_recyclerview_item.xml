@@ -6,32 +6,50 @@
     android:layout_marginLeft="20dp"
     android:layout_marginStart="20dp"
     android:gravity="center"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:paddingEnd="12dp"
     android:paddingLeft="12dp"
     android:paddingRight="12dp"
     android:paddingStart="12dp"
     android:paddingTop="12dp">
 
-    <TextView
-        android:id="@+id/historyItem_date"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/_1" />
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal">
 
-    <TextView
-        android:id="@+id/historyItem_weightTv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/_33kgs" />
+        <TextView
+            android:id="@+id/historyItem_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/_1" />
 
-    <TextView
-        android:id="@+id/historyItem_fatTv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/_12_reps" />
+        <TextView
+            android:id="@+id/historyItem_weightTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/_33kgs" />
+
+        <TextView
+            android:id="@+id/historyItem_fatTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/_12_reps" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/black" />
 
 </LinearLayout>

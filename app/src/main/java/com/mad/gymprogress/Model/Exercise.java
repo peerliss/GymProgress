@@ -5,58 +5,62 @@ package com.mad.gymprogress.Model;
  */
 
 public class Exercise {
-    private String mCategory;
-    private String mName;
-    private int mWeight;
-    private int mReps;
+    private String category;
+    private String name;
+    private int weight;
+    private int reps;
+    private int set;
 
-    public Exercise(String mCategory, String mName, int mWeight, int mReps) {
-        this.mCategory = mCategory;
-        this.mName = mName;
-        this.mWeight = mWeight;
-        this.mReps = mReps;
+    public Exercise(String category, String name, int weight, int reps, int set) {
+        this.category = category;
+        this.name = name;
+        this.weight = weight;
+        this.reps = reps;
+        this.set = set;
+
     }
 
-    /*public Exercise(String mName, int mWeight, int mReps) {
-        this.mName = mName;
-        this.mWeight = mWeight;
-        this.mReps = mReps;
+    public Exercise() {
+
     }
 
-    public Exercise(String mCategory, String mName) {
-        this.mCategory = mCategory;
-        this.mName = mName;
-    }*/
-
-    public String getmCategory() {
-        return mCategory;
+    public String getcategory() {
+        return category;
     }
 
-    public void setmCategory(String mCategory) {
-        this.mCategory = mCategory;
+    public void setcategory(String category) {
+        this.category = category;
     }
 
-    public String getmName() {
-        return mName;
+    public String getname() {
+        return name;
     }
 
-    public void setmName(String mName) {
-        this.mName = mName;
+    public void setname(String name) {
+        this.name = name;
     }
 
-    public int getmWeight() {
-        return mWeight;
+    public int getweight() {
+        return weight;
     }
 
-    public void setmWeight(int mWeight) {
-        this.mWeight = mWeight;
+    public void setweight(int weight) {
+        this.weight = weight;
     }
 
-    public int getmReps() {
-        return mReps;
+    public int getreps() {
+        return reps;
     }
 
-    public void setmReps(int mReps) {
-        this.mReps = mReps;
+    public void setreps(int reps) {
+        this.reps = reps;
+    }
+
+    public int getSet() {
+        return set;
+    }
+
+    public void setSet(int set) {
+        this.set = set;
     }
 }
