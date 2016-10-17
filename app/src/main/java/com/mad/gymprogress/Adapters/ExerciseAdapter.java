@@ -1,3 +1,7 @@
+/**
+ * Adapter for RecyclerView in IndividualActivity
+ */
+
 package com.mad.gymprogress.Adapters;
 
 import android.content.Context;
@@ -16,37 +20,60 @@ import com.mad.gymprogress.R;
 
 import java.util.ArrayList;
 
-/**
- * Created by peerliss on 13/10/2016.
- */
-
 public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHolder> {
 
     private ArrayList<Exercise> exerciseArrayList;
     private Context context;
 
+    /**
+     * ExerciseAdapter constructor
+     *
+     * @param context
+     * @param exercises
+     */
     public ExerciseAdapter(Context context, ArrayList<Exercise> exercises) {
         this.context = context;
         this.exerciseArrayList = exercises;
     }
 
+    /**
+     * Set RecyclerView item layout to view
+     *
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.individual_recyclerview_item, parent, false);
         return new ViewHolder(view);
     }
 
+    /**
+     * Bind TextView with Exercise Name
+     *
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Exercise exercise = exerciseArrayList.get(position);
         holder.exerciseListTv.setText(exercise.getname());
     }
 
+    /**
+     * Return exerciseArrayList size
+     *
+     * @return
+     */
     @Override
     public int getItemCount() {
         return exerciseArrayList.size();
     }
 
+    /**
+     * RecyclerView.ViewHolder class to add Exercise to RecyclerView item
+     */
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public static final String EXERCISE_BUNDLE = "Exercise_Bundle";
@@ -57,6 +84,11 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
         private TextView exerciseListTv;
         private LinearLayout linearLayout;
 
+        /**
+         * Initialize fields and set onClickListener for RecyclerView item's layout
+         *
+         * @param itemView
+         */
         public ViewHolder(View itemView) {
             super(itemView);
             exerciseListTv = (TextView) itemView.findViewById(R.id.exerciseListTv);
@@ -67,12 +99,14 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
         @Override
         public void onClick(View v) {
             int position = getAdapterPosition();
+            // Get exercise based on position in RecyclerView
             Exercise exercise = exerciseArrayList.get(position);
             String exerciseCategory = exercise.getcategory();
             String exerciseName = exercise.getname();
             int exerciseWeight = exercise.getweight();
             int exerciseReps = exercise.getreps();
 
+            // Start activity AddExerciseActivity with intent including exercise details added in a bundle
             Intent intent = new Intent(context, AddExerciseActivity.class);
 
             Bundle bundle = new Bundle();

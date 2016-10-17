@@ -1,7 +1,9 @@
 package com.mad.gymprogress.Model;
 
 /**
- * Created by peerliss on 13/10/2016.
+ * Model class with constructors for all fields
+ * Empty constructor
+ * Getter/Setter for all fields
  */
 
 public class Exercise {

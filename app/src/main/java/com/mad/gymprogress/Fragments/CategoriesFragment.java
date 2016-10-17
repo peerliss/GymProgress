@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 
 import com.mad.gymprogress.R;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */

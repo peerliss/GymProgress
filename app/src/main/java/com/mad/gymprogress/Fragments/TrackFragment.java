@@ -26,11 +26,9 @@ public class TrackFragment extends Fragment {
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
 
-/*
     public TrackFragment() {
         // Required empty public constructor
     }
-*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,6 +41,7 @@ public class TrackFragment extends Fragment {
         //Set adapter for view pager
         viewPager.setAdapter(new TrackAdapter(getChildFragmentManager()));
 
+        // Set layout with viewPager
         trackLayout.post(new Runnable() {
             @Override
             public void run() {

@@ -22,7 +22,6 @@ import com.mad.gymprogress.R;
 
 import java.util.Date;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -52,15 +51,17 @@ public class EnterWeightFragment extends Fragment {
         // Inflate the layout for this fragment
         final View weightView = inflater.inflate(R.layout.fragment_enter_weight, container, false);
 
+        // Initialize fields
         weightEt = (EditText) weightView.findViewById(R.id.track_weightEt);
         fatEt = (EditText) weightView.findViewById(R.id.track_fatEt);
         saveBtn = (Button) weightView.findViewById(R.id.weight_saveBtn);
 
+        // Get current date in format dd/MM/yy
         dateStr = (String) DateFormat.format("dd/MM/yy", new java.util.Date());
+
+        // Get current user id from current Firebase instance
         mAuth = FirebaseAuth.getInstance();
-
         FirebaseUser user = mAuth.getCurrentUser();
-
         uid = user.getUid();
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +70,7 @@ public class EnterWeightFragment extends Fragment {
                 weightStr = weightEt.getText().toString();
                 fatStr = fatEt.getText().toString();
 
+                // Check if EditText fields are empty
                 if (TextUtils.isEmpty(weightStr) & TextUtils.isEmpty(fatStr)) {
                     Toast.makeText(getContext(), R.string.please_enter_weight_or_fat, Toast.LENGTH_LONG).show();
                 } else {
@@ -76,11 +78,13 @@ public class EnterWeightFragment extends Fragment {
                 }
             }
         });
-
-
         return weightView;
     }
 
+    /**
+     * Get databaseReference based on UserID
+     * Add data entered by user, along with current date to Firebase Database
+     */
     private void saveDetails() {
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Track");
         DatabaseReference newTrack = databaseReference.push();

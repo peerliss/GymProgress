@@ -43,24 +43,28 @@ public class WorkoutsFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View workoutsView = inflater.inflate(R.layout.fragment_workouts, container, false);
 
+        // Get current date in format dd/MM/yy
         dateStr = (String) DateFormat.format("dd-MM-yy", new java.util.Date());
 
+        // Initialize fields
         selectDateBtn = (Button) workoutsView.findViewById(R.id.workoutsDateBtn);
 
+        // Get current user id from current Firebase instance
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         uid = user.getUid();
 
         try {
+            // Get databaseReference based on date
             databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Workouts").child(dateStr).child("Exercise").child("Set");
 
+            // Get data from databaseReference as a map
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {

@@ -1,3 +1,7 @@
+/**
+ * Activity to display exercise selected by user and add their exercise details
+ */
+
 package com.mad.gymprogress.Activities;
 
 import android.app.FragmentManager;
@@ -53,22 +57,28 @@ public class AddExerciseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Set view and toolbar
         setContentView(R.layout.activity_add_exercise);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // Get current user id from current Firebase instance
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         uid = user.getUid();
 
+        // Initialize RecyclerView and set its LayoutManager
         recyclerView = (RecyclerView) findViewById(R.id.addExerciseRecyclerView);
         layoutManager = new LinearLayoutManager(AddExerciseActivity.this);
         recyclerView.setLayoutManager(layoutManager);
 
+        // Get exercise name from exercise list
         exerciseBundle = getIntent().getBundleExtra(ExerciseAdapter.ViewHolder.EXERCISE_BUNDLE);
+        exerciseName = exerciseBundle.getString(ExerciseAdapter.ViewHolder.EXERCISE_NAME);
 
+        // Initialize fields in view
         TextView exerciseTitle = (TextView) findViewById(R.id.exerciseTitle);
         weightEt = (EditText) findViewById(R.id.weightEt);
         repsEt = (EditText) findViewById(R.id.repsEt);
@@ -76,21 +86,26 @@ public class AddExerciseActivity extends AppCompatActivity {
         Button clearBtn = (Button) findViewById(R.id.clearBtn);
         final Button doneBtn = (Button) findViewById(R.id.addExerciseDoneBtn);
 
+        // Get current date in the format of dd-MM-yy
         dateStr = (String) DateFormat.format("dd-MM-yy", new java.util.Date());
-        exerciseName = exerciseBundle.getString(ExerciseAdapter.ViewHolder.EXERCISE_NAME);
+
 
         addSetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Check to identify if required fields are empty
                 if (checkFields()) {
-
+                    // Check value of set
                     checkSet();
                     if (set > 5) {
                         Toast.makeText(AddExerciseActivity.this, R.string.cannot_add_sets, Toast.LENGTH_LONG).show();
                         return;
                     }
+
+                    // Set databaseReference to a new reference based on the exercise selected, date and set
                     databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Workouts").child(dateStr).child(exerciseName).child("Set " + set);
 
+                    // Add set to database
                     if (databaseReference != null) {
                         databaseReference.child("category").setValue(exerciseBundle.getString(ExerciseAdapter.ViewHolder.EXERCISE_CATEGORY));
                         databaseReference.child("name").setValue(exerciseName);
@@ -104,6 +119,7 @@ public class AddExerciseActivity extends AppCompatActivity {
             }
         });
 
+        // Start MainActitvity, unique intent is passed to identify which activity started MainActivity
         doneBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,6 +130,7 @@ public class AddExerciseActivity extends AppCompatActivity {
             }
         });
 
+        // Set EditText fields to null and remove all data entered by user in the current session
         clearBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,12 +142,19 @@ public class AddExerciseActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Check database to see if set already exists and is to be increased
+     */
     protected void checkSet() {
         if (FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Workouts").child(dateStr).child(exerciseName).child("Set " + set).child("weight") != null) {
             set++;
         }
     }
 
+    /**
+     * Check to see if EditText fields are empty
+     * @return boolean according to field values
+     */
     protected boolean checkFields() {
         weightStr = weightEt.getText().toString();
         repsStr = repsEt.getText().toString();
@@ -149,49 +173,81 @@ public class AddExerciseActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        // Get database reference according to current user, date and exercise name
         DatabaseReference setDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Workouts").child(dateStr).child(exerciseName);
+
+        // Set up FirebaseRecyclerAdapter
         FirebaseRecyclerAdapter<Exercise, AddExerciseViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Exercise, AddExerciseViewHolder>(
                 Exercise.class,
                 R.layout.history_recyclerview_item,
                 AddExerciseActivity.AddExerciseViewHolder.class,
                 setDatabaseReference
         ) {
+            /**
+             * Populate RecyclerView items
+             * @param viewHolder
+             * @param model
+             * @param position
+             */
             @Override
             protected void populateViewHolder(AddExerciseViewHolder viewHolder, Exercise model, int position) {
                 viewHolder.setSet(model.getSet());
                 viewHolder.setWeight(model.getweight());
                 viewHolder.setReps(model.getreps());
-//                set++;
             }
         };
         recyclerView.setAdapter(firebaseRecyclerAdapter);
     }
 
+    /**
+     * Static inner RecyclerView.ViewHolder class to add Exercise to RecyclerView item
+     */
     public static class AddExerciseViewHolder extends RecyclerView.ViewHolder {
 
         View mView;
 
+        /**
+         * Set view
+         * @param itemView
+         */
         public AddExerciseViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
         }
 
+        /**
+         * Populate RecyclerView items TextView
+         * @param set
+         */
         public void setSet(int set) {
             TextView trackDate = (TextView) mView.findViewById(R.id.historyItem_date);
             trackDate.setText(String.valueOf(set));
         }
 
+        /**
+         * Populate RecyclerView items TextView
+         * @param weight
+         */
         public void setWeight(int weight) {
             TextView trackWeight = (TextView) mView.findViewById(R.id.historyItem_weightTv);
             trackWeight.setText(String.valueOf(weight));
         }
 
+        /**
+         * Populate RecyclerView items TextView
+         * @param reps
+         */
         public void setReps(int reps) {
             TextView trackFat = (TextView) mView.findViewById(R.id.historyItem_fatTv);
             trackFat.setText(String.valueOf(reps));
         }
     }
 
+    /**
+     * Set Home as up button to have the functionality of onBackPressed
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -202,12 +258,18 @@ public class AddExerciseActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Return to parent activity
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         passIntentToParent();
     }
 
+    /**
+     * Pass exercise details in intent to parent
+     */
     protected void passIntentToParent() {
         Intent intent = new Intent(AddExerciseActivity.this, IndividualActivity.class);
         intent.putExtra(ADD_EXERCISE_BUNDLE, exerciseBundle);

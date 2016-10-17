@@ -76,4 +76,9 @@
     <string name="enter_exercise_name">Please enter exercise name</string>
     <string name="exercises">Exercises</string>
     <string name="workout_history">Workout history</string>
+    <string name="enter_email">Please enter your email</string>
+    <string name="enter_password">Please enter your password</string>
+    <string name="password_short">Your password is too short, enter minimum 6 characters</string>
+    <string name="confirm_password_mismatch">Password and confirm password do not match</string>
+    <string name="enter_valid_email">Please enter valid email</string>
 </resources>

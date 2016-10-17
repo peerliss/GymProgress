@@ -1,3 +1,7 @@
+/**
+ * Activity containing a NavigationDrawer which displays different fragments based on the MenuItem selected
+ */
+
 package com.mad.gymprogress.Activities;
 
 import android.content.Intent;
@@ -33,21 +37,21 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Set view and toolbar
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
+        // Inflate initial fragment to be viewed based on intents received
         if (getIntent().getStringExtra(AddExerciseActivity.ADD_EXERCISE_DONE) != null) {
             mFragmentManager = getSupportFragmentManager();
             mFragmentTransaction = mFragmentManager.beginTransaction();
             mFragmentTransaction.replace(R.id.containerView, new WorkoutsFragment()).commit();
         } else {
-            // Inflate initial fragment to be viewed
             mFragmentManager = getSupportFragmentManager();
             mFragmentTransaction = mFragmentManager.beginTransaction();
             mFragmentTransaction.replace(R.id.containerView, new CategoriesFragment()).commit();
         }
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         // Setup firebase with current instance
         mAuth = FirebaseAuth.getInstance();
@@ -76,6 +80,9 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    /**
+     * Close drawer if open
+     */
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -92,6 +99,12 @@ public class MainActivity extends AppCompatActivity
         mAuth.addAuthStateListener(mAuthListener);
     }
 
+    /**
+     * Inflate menu
+     *
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -99,14 +112,16 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    /**
+     * Handle MenuItem clicks here
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection switch/case statement
         switch (id) {
             case R.id.action_logout:
                 mAuth.signOut();
@@ -118,14 +133,19 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Handle navigation view item clicks
+     * Display fragment according to MenuItem selected
+     *
+     * @param item
+     * @return
+     */
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_today) {
-            // Handle the today action
             FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.containerView, new WorkoutsFragment()).commit();
         } else if (id == R.id.nav_addExercise) {
@@ -141,48 +161,88 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    /**
+     * Start IndividualActivity with intent passing the category selected
+     *
+     * @param view
+     */
     public void shouldersOnClick(View view) {
         Intent intent = new Intent(MainActivity.this, IndividualActivity.class);
         intent.putExtra(EXERCISE_STRING, "Shoulders");
         startActivity(intent);
     }
 
+    /**
+     * Start IndividualActivity with intent passing the category selected
+     *
+     * @param view
+     */
     public void bicepsOnClick(View view) {
         Intent intent = new Intent(MainActivity.this, IndividualActivity.class);
         intent.putExtra(EXERCISE_STRING, "Biceps");
         startActivity(intent);
     }
 
+    /**
+     * Start IndividualActivity with intent passing the category selected
+     *
+     * @param view
+     */
     public void tricepsOnClick(View view) {
         Intent intent = new Intent(MainActivity.this, IndividualActivity.class);
         intent.putExtra(EXERCISE_STRING, "Triceps");
         startActivity(intent);
     }
 
+    /**
+     * Start IndividualActivity with intent passing the category selected
+     *
+     * @param view
+     */
     public void chestOnClick(View view) {
         Intent intent = new Intent(MainActivity.this, IndividualActivity.class);
         intent.putExtra(EXERCISE_STRING, "Chest");
         startActivity(intent);
     }
 
+    /**
+     * Start IndividualActivity with intent passing the category selected
+     *
+     * @param view
+     */
     public void backOnClick(View view) {
         Intent intent = new Intent(MainActivity.this, IndividualActivity.class);
         intent.putExtra(EXERCISE_STRING, "Back");
         startActivity(intent);
     }
 
+    /**
+     * Start IndividualActivity with intent passing the category selected
+     *
+     * @param view
+     */
     public void absOnClick(View view) {
         Intent intent = new Intent(MainActivity.this, IndividualActivity.class);
         intent.putExtra(EXERCISE_STRING, "Abs");
         startActivity(intent);
     }
 
+    /**
+     * Start IndividualActivity with intent passing the category selected
+     *
+     * @param view
+     */
     public void legsOnClick(View view) {
         Intent intent = new Intent(MainActivity.this, IndividualActivity.class);
         intent.putExtra(EXERCISE_STRING, "Legs");
         startActivity(intent);
     }
 
+    /**
+     * Start IndividualActivity with intent passing the category selected
+     *
+     * @param view
+     */
     public void cardioOnClick(View view) {
         Intent intent = new Intent(MainActivity.this, IndividualActivity.class);
         intent.putExtra(EXERCISE_STRING, "Cardio");

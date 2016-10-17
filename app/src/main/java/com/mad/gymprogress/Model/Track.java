@@ -3,7 +3,9 @@ package com.mad.gymprogress.Model;
 import java.util.Date;
 
 /**
- * Created by peerliss on 14/10/2016.
+ * Track class with constructors for all fields
+ * Empty constructor
+ * Getter/Setter for all fields
  */
 
 public class Track {

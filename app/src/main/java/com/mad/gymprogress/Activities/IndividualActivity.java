@@ -1,3 +1,7 @@
+/**
+ * Activity to display list of exercises based on category selected by user
+ */
+
 package com.mad.gymprogress.Activities;
 
 import android.content.DialogInterface;
@@ -43,17 +47,19 @@ public class IndividualActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Set view and toolbar
         setContentView(R.layout.activity_individual);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // Initialize RecyclerView and set its LayoutManager
         mRecyclerView = (RecyclerView) findViewById(R.id.individualRecyclerView);
-
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+        // Check intents and set exercise category accordingly
         try {
             if (getIntent().getStringExtra(MainActivity.EXERCISE_STRING) == null) {
                 Bundle bundle = getIntent().getBundleExtra(AddExerciseActivity.ADD_EXERCISE_BUNDLE);
@@ -64,6 +70,7 @@ public class IndividualActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        // Check exercise category and set RecyclerView adapter according to the corresponding category's list
         try {
             if (exercise.matches("Shoulders")) {
                 mExerciseAdapter = new ExerciseAdapter(IndividualActivity.this, shouldersList);
@@ -104,28 +111,23 @@ public class IndividualActivity extends AppCompatActivity {
         }
 
         addFab = (FloatingActionButton) findViewById(R.id.individual_addExerciseFab);
-        /*addFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Exercise customExercise = new Exercise(exercise, "CUSTOM SHOULDER EXERCISE", 0, 0, 0);
-                returnExerciseList().add(customExercise);
-                mExerciseAdapter.notifyDataSetChanged();
-            }
-        });*/
 
+        // Add exercise in the exercise category list with an Exercise name according to user input
         addFab.setOnClickListener(new View.OnClickListener() {
             public String customExerciseStr;
             public String confirm = "false";
 
             @Override
             public void onClick(View v) {
+                // Display an AlertDialog with a view containing an EditText
                 AlertDialog.Builder builder = new AlertDialog.Builder(IndividualActivity.this);
                 builder.setTitle("Please enter exercise name");
                 LayoutInflater layoutInflater = LayoutInflater.from(IndividualActivity.this);
                 View promptView = layoutInflater.inflate(R.layout.add_custom_exercise, null);
                 builder.setView(promptView);
-                addCustomExerciseEt = (EditText) promptView.findViewById(R.id.addCustomExerciseInput);
 
+                // Initialize EditText
+                addCustomExerciseEt = (EditText) promptView.findViewById(R.id.addCustomExerciseInput);
 
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
@@ -142,6 +144,10 @@ public class IndividualActivity extends AppCompatActivity {
                         addCustomExercise();
                     }
 
+                    /**
+                     * Check if EditText is empty
+                     * Add Exercise with a name input by a user to the categories list
+                     */
                     private void addCustomExercise() {
                         customExerciseStr = addCustomExerciseEt.getText().toString();
                         if (!TextUtils.isEmpty(customExerciseStr)) {
@@ -158,6 +164,10 @@ public class IndividualActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Return currently selected Categories ArrayList
+     * @return
+     */
     protected ArrayList<Exercise> returnExerciseList() {
         if (exercise.matches("Shoulders")) {
             return shouldersList;
@@ -177,19 +187,6 @@ public class IndividualActivity extends AppCompatActivity {
             return cardioList;
         }
         return null;
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        exercise = getIntent().getStringExtra(MainActivity.EXERCISE_STRING);
-        outState.putString(EXERCISE, exercise);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        exercise = savedInstanceState.getString(EXERCISE);
     }
 
     private void populateShouldersList() {

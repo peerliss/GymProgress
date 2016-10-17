@@ -20,6 +20,8 @@ import java.util.ArrayList;
 
 
 /**
+ * Fragment containing dummy BarChart
+ * Is not displayed in app
  * A simple {@link Fragment} subclass.
  */
 public class ProgressFragment extends Fragment {
@@ -36,16 +38,20 @@ public class ProgressFragment extends Fragment {
         // Inflate the layout for this fragment
         View progressView = inflater.inflate(R.layout.fragment_progress, container, false);
 
+        // Initialize BarChart
         BarChart weightBarChart = (BarChart) progressView.findViewById(R.id.progressBarChart);
 
+        // Create ArrayList for BarChart
         ArrayList<BarEntry> entries = new ArrayList<>();
         entries.add(new BarEntry(4f, 60));
         entries.add(new BarEntry(5f, 61));
         entries.add(new BarEntry(6f, 62));
         entries.add(new BarEntry(7f, 63));
 
+        // Define BarDataSet
         BarDataSet dataset = new BarDataSet(entries, "Weight");
 
+        // Create ArrayList to display as labels for BarEntries
         ArrayList<String> labels = new ArrayList<String>();
         labels.add("10/10/16");
         labels.add("11/10/16");
@@ -54,20 +60,14 @@ public class ProgressFragment extends Fragment {
 
         BarData barData = new BarData(dataset);
 
+        // Inflate BarChart
         weightBarChart.setData(barData);
         weightBarChart.setDescription("History");
         weightBarChart.setDescriptionTextSize(20f);
 
-
-        /*Legend legend = weightBarChart.getLegend();
-        legend.setTextSize(15f);
-        legend.setXEntrySpace(5f);
-        legend.setYEntrySpace(5f);
-        legend.setTextColor(R.color.black);*/
-
+        // Refresh BarChart
         weightBarChart.invalidate();
 
         return progressView;
     }
-
 }

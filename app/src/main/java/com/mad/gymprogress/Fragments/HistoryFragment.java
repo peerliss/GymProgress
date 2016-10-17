@@ -18,7 +18,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.mad.gymprogress.Model.Track;
 import com.mad.gymprogress.R;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -34,21 +33,22 @@ public class HistoryFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View historyView = inflater.inflate(R.layout.fragment_history, container, false);
 
+        // Initialize RecyclerView and set its LayoutManager
         recyclerView = (RecyclerView) historyView.findViewById(R.id.historyRecyclerView);
-
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
+        // Get current user id from current Firebase instance
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         uid = user.getUid();
 
+        // Set databaseReference
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Track");
 
         return historyView;
@@ -57,12 +57,19 @@ public class HistoryFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        // Set up FirebaseRecyclerAdapter
         FirebaseRecyclerAdapter<Track, HistoryViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Track, HistoryViewHolder>(
                 Track.class,
                 R.layout.history_recyclerview_item,
                 HistoryViewHolder.class,
                 databaseReference
         ) {
+            /**
+             * Populate RecyclerView items
+             * @param viewHolder
+             * @param model
+             * @param position
+             */
             @Override
             protected void populateViewHolder(HistoryViewHolder viewHolder, Track model, int position) {
                 viewHolder.setDate(model.getDate());
@@ -73,25 +80,48 @@ public class HistoryFragment extends Fragment {
         recyclerView.setAdapter(firebaseRecyclerAdapter);
     }
 
+    /**
+     * Static inner RecyclerView.ViewHolder class to add Track to RecyclerView item
+     */
     public static class HistoryViewHolder extends RecyclerView.ViewHolder {
 
         View mView;
 
+        /**
+         * Set view
+         *
+         * @param itemView
+         */
         public HistoryViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
         }
 
+        /**
+         * Populate RecyclerView items TextView
+         *
+         * @param date
+         */
         public void setDate(String date) {
             TextView trackDate = (TextView) mView.findViewById(R.id.historyItem_date);
             trackDate.setText(date);
         }
 
+        /**
+         * Populate RecyclerView items TextView
+         *
+         * @param weight
+         */
         public void setWeight(String weight) {
             TextView trackWeight = (TextView) mView.findViewById(R.id.historyItem_weightTv);
             trackWeight.setText(weight);
         }
 
+        /**
+         * Populate RecyclerView items TextView
+         *
+         * @param fat
+         */
         public void setFat(String fat) {
             TextView trackFat = (TextView) mView.findViewById(R.id.historyItem_fatTv);
             trackFat.setText(fat);

@@ -94,6 +94,7 @@ public class LoginActivity extends AppCompatActivity {
                 .requestEmail()
                 .build();
 
+        // Initialize GoogleApiClient
         mGoogleApiClient = new GoogleApiClient.Builder(getApplicationContext()).enableAutoManage(this, new GoogleApiClient.OnConnectionFailedListener() {
             @Override
             public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
@@ -102,13 +103,21 @@ public class LoginActivity extends AppCompatActivity {
         }).addApi(Auth.GOOGLE_SIGN_IN_API, gso).build();
     }
 
-    // Start google sign in activity
+    /**
+     * Start google sign in activity
+     */
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
-    // Get google sign in results
+    /**
+     * Get google sign in results
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -127,7 +136,11 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    // Sign in with credentials from google
+    /**
+     * Sign in with credentials from google
+     *
+     * @param account
+     */
     private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
         mAuth.signInWithCredential(credential)
@@ -149,7 +162,10 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-    // Sign in with email
+    /**
+     * Sign in with email
+     * Check if required fields are null
+     */
     private void signInEmail() {
         String email = mEmail.getText().toString();
         String password = mPassword.getText().toString();

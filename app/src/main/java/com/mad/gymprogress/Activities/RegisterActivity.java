@@ -1,3 +1,7 @@
+/**
+ * Activity which allows a user to register to the apps Firebase Database
+ */
+
 package com.mad.gymprogress.Activities;
 
 import android.os.Bundle;
@@ -28,6 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Set view and toolbar
         setContentView(R.layout.activity_register);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -53,25 +58,33 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     // Add user to database if conditions are met
+
+    /**
+     * Add user to database if Fields pass requirements
+     */
     private void register() {
         final String email = mEmailEt.getText().toString();
         final String password = mPasswordEt.getText().toString();
         final String confirmPassword = mConfirmPasswordEt.getText().toString();
 
         if (TextUtils.isEmpty(email)) {
-            Toast.makeText(getApplicationContext(), "Please enter your email", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.enter_email, Toast.LENGTH_SHORT).show();
             return;
         }
         if (TextUtils.isEmpty(password)) {
-            Toast.makeText(getApplicationContext(), "Please enter your password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.enter_password, Toast.LENGTH_SHORT).show();
             return;
         }
         if (password.length() < 6) {
-            Toast.makeText(getApplicationContext(), "Your password is too short, enter minimum 6 characters", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.password_short, Toast.LENGTH_SHORT).show();
             return;
         }
         if (!password.matches(confirmPassword)) {
-            Toast.makeText(getApplicationContext(), "Password and confirm password do not match", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.confirm_password_mismatch, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (!email.contains("@")) {
+            Toast.makeText(getApplicationContext(), R.string.enter_valid_email, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -84,8 +97,6 @@ public class RegisterActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(RegisterActivity.this, "You have successfully signed up!", Toast.LENGTH_SHORT).show();
                     mAuth.signInWithEmailAndPassword(email, password);
-//                    startActivity(new Intent(RegisterActivity.this, NavigationActivity.class));
-//                    finish();
                 }
             }
         });
