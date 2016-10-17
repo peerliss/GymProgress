@@ -74,10 +74,6 @@ public class AddExerciseActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(AddExerciseActivity.this);
         recyclerView.setLayoutManager(layoutManager);
 
-        // Get exercise name from exercise list
-        exerciseBundle = getIntent().getBundleExtra(ExerciseAdapter.ViewHolder.EXERCISE_BUNDLE);
-        exerciseName = exerciseBundle.getString(ExerciseAdapter.ViewHolder.EXERCISE_NAME);
-
         // Initialize fields in view
         TextView exerciseTitle = (TextView) findViewById(R.id.exerciseTitle);
         weightEt = (EditText) findViewById(R.id.weightEt);
@@ -86,9 +82,14 @@ public class AddExerciseActivity extends AppCompatActivity {
         Button clearBtn = (Button) findViewById(R.id.clearBtn);
         final Button doneBtn = (Button) findViewById(R.id.addExerciseDoneBtn);
 
+        // Get exercise name from exercise list
+        exerciseBundle = getIntent().getBundleExtra(ExerciseAdapter.ViewHolder.EXERCISE_BUNDLE);
+        exerciseName = exerciseBundle.getString(ExerciseAdapter.ViewHolder.EXERCISE_NAME);
+
+        exerciseTitle.setText(exerciseName);
+
         // Get current date in the format of dd-MM-yy
         dateStr = (String) DateFormat.format("dd-MM-yy", new java.util.Date());
-
 
         addSetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,12 +135,16 @@ public class AddExerciseActivity extends AppCompatActivity {
         clearBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                weightEt.setText(null);
-                repsEt.setText(null);
-                DatabaseReference clearReference = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Workouts").child(dateStr).child(exerciseName);
-                clearReference.removeValue();
+                clearWorkout();
             }
         });
+    }
+
+    protected void clearWorkout() {
+        weightEt.setText(null);
+        repsEt.setText(null);
+        DatabaseReference clearReference = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Workouts").child(dateStr).child(exerciseName);
+        clearReference.removeValue();
     }
 
     /**
@@ -153,6 +158,7 @@ public class AddExerciseActivity extends AppCompatActivity {
 
     /**
      * Check to see if EditText fields are empty
+     *
      * @return boolean according to field values
      */
     protected boolean checkFields() {
@@ -208,6 +214,7 @@ public class AddExerciseActivity extends AppCompatActivity {
 
         /**
          * Set view
+         *
          * @param itemView
          */
         public AddExerciseViewHolder(View itemView) {
@@ -217,6 +224,7 @@ public class AddExerciseActivity extends AppCompatActivity {
 
         /**
          * Populate RecyclerView items TextView
+         *
          * @param set
          */
         public void setSet(int set) {
@@ -226,6 +234,7 @@ public class AddExerciseActivity extends AppCompatActivity {
 
         /**
          * Populate RecyclerView items TextView
+         *
          * @param weight
          */
         public void setWeight(int weight) {
@@ -235,6 +244,7 @@ public class AddExerciseActivity extends AppCompatActivity {
 
         /**
          * Populate RecyclerView items TextView
+         *
          * @param reps
          */
         public void setReps(int reps) {
@@ -245,6 +255,7 @@ public class AddExerciseActivity extends AppCompatActivity {
 
     /**
      * Set Home as up button to have the functionality of onBackPressed
+     *
      * @param item
      * @return
      */
@@ -253,6 +264,7 @@ public class AddExerciseActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 super.onBackPressed();
+                clearWorkout();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -264,6 +276,7 @@ public class AddExerciseActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        clearWorkout();
         passIntentToParent();
     }
 

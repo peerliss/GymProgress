@@ -36,7 +36,7 @@ public class IndividualActivity extends AppCompatActivity {
     private ArrayList<Exercise> backList = new ArrayList<>();
     private ArrayList<Exercise> absList = new ArrayList<>();
     private ArrayList<Exercise> legsList = new ArrayList<>();
-    private ArrayList<Exercise> cardioList = new ArrayList<>();
+    private ArrayList<Exercise> latsList = new ArrayList<>();
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mExerciseAdapter;
     private String exercise = "Shoulders";
@@ -100,10 +100,10 @@ public class IndividualActivity extends AppCompatActivity {
                 mExerciseAdapter = new ExerciseAdapter(IndividualActivity.this, legsList);
                 mRecyclerView.setAdapter(mExerciseAdapter);
                 populateLegsList();
-            } else if (exercise.matches("Cardio")) {
-                mExerciseAdapter = new ExerciseAdapter(IndividualActivity.this, cardioList);
+            } else if (exercise.matches("Lats")) {
+                mExerciseAdapter = new ExerciseAdapter(IndividualActivity.this, latsList);
                 mRecyclerView.setAdapter(mExerciseAdapter);
-                populateCardioList();
+                populateLatsList();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -166,6 +166,7 @@ public class IndividualActivity extends AppCompatActivity {
 
     /**
      * Return currently selected Categories ArrayList
+     *
      * @return
      */
     protected ArrayList<Exercise> returnExerciseList() {
@@ -183,8 +184,8 @@ public class IndividualActivity extends AppCompatActivity {
             return absList;
         } else if (exercise.matches("Legs")) {
             return legsList;
-        } else if (exercise.matches("Cardio")) {
-            return cardioList;
+        } else if (exercise.matches("Lats")) {
+            return latsList;
         }
         return null;
     }
@@ -448,39 +449,39 @@ public class IndividualActivity extends AppCompatActivity {
         mExerciseAdapter.notifyDataSetChanged();
     }
 
-    private void populateCardioList() {
-        Log.d(INDIVIDUAL_ACTIVITY, "populateCardioList");
-        Exercise cardio = new Exercise("Cardio", "Rope jumping", 0, 0, 0);
-        cardioList.add(cardio);
+    private void populateLatsList() {
+        Log.d(INDIVIDUAL_ACTIVITY, "populateLatsList");
+        Exercise lats = new Exercise("Lats", "Wide grip pull up", 0, 0, 0);
+        latsList.add(lats);
 
-        cardio = new Exercise("Cardio", "Step mill", 0, 0, 0);
-        cardioList.add(cardio);
-        cardio = new Exercise("Cardio", "Jog in place", 0, 0, 0);
-        cardioList.add(cardio);
-        cardio = new Exercise("Cardio", "Bicycling", 0, 0, 0);
-        cardioList.add(cardio);
-        cardio = new Exercise("Cardio", "Rowing, stationary", 0, 0, 0);
-        cardioList.add(cardio);
-        cardio = new Exercise("Cardio", "Elliptical trainer", 0, 0, 0);
-        cardioList.add(cardio);
-        cardio = new Exercise("Cardio", "Stairmaster", 0, 0, 0);
-        cardioList.add(cardio);
-        cardio = new Exercise("Cardio", "Trail running/walking", 0, 0, 0);
-        cardioList.add(cardio);
-        cardio = new Exercise("Cardio", "Burpee", 0, 0, 0);
-        cardioList.add(cardio);
-        cardio = new Exercise("Cardio", "Running, treadmill", 0, 0, 0);
-        cardioList.add(cardio);
-        cardio = new Exercise("Cardio", "Skating", 0, 0, 0);
-        cardioList.add(cardio);
-        cardio = new Exercise("Cardio", "Bicycling, stationary", 0, 0, 0);
-        cardioList.add(cardio);
-        cardio = new Exercise("Cardio", "Jogging, treadmill", 0, 0, 0);
-        cardioList.add(cardio);
-        cardio = new Exercise("Cardio", "Butt kicks", 0, 0, 0);
-        cardioList.add(cardio);
-        cardio = new Exercise("Cardio", "Recumbent bike", 0, 0, 0);
-        cardioList.add(cardio);
+        lats = new Exercise("Lats", "Weighted pull ups", 0, 0, 0);
+        latsList.add(lats);
+        lats = new Exercise("Lats", "Pullups", 0, 0, 0);
+        latsList.add(lats);
+        lats = new Exercise("Lats", "Chin up", 0, 0, 0);
+        latsList.add(lats);
+        lats = new Exercise("Lats", "Machine assisted pull up", 0, 0, 0);
+        latsList.add(lats);
+        lats = new Exercise("Lats", "Rocky pull ups/pulldowns", 0, 0, 0);
+        latsList.add(lats);
+        lats = new Exercise("Lats", "Muscle up", 0, 0, 0);
+        latsList.add(lats);
+        lats = new Exercise("Lats", "Shotgun row", 0, 0, 0);
+        latsList.add(lats);
+        lats = new Exercise("Lats", "V bar pulldown", 0, 0, 0);
+        latsList.add(lats);
+        lats = new Exercise("Lats", "Close grip front lat pulldown", 0, 0, 0);
+        latsList.add(lats);
+        lats = new Exercise("Lats", "V bar pullup", 0, 0, 0);
+        latsList.add(lats);
+        lats = new Exercise("Lats", "Rope climb", 0, 0, 0);
+        latsList.add(lats);
+        lats = new Exercise("Lats", "Rope straight arm pulldown", 0, 0, 0);
+        latsList.add(lats);
+        lats = new Exercise("Lats", "Wide grip rear pull up", 0, 0, 0);
+        latsList.add(lats);
+        lats = new Exercise("Lats", "Wide grip lat pulldown", 0, 0, 0);
+        latsList.add(lats);
 
         mExerciseAdapter.notifyDataSetChanged();
     }

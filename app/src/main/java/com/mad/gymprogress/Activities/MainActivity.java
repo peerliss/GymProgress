@@ -4,9 +4,13 @@
 
 package com.mad.gymprogress.Activities;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -17,6 +21,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.mad.gymprogress.Fragments.CategoriesFragment;
@@ -34,6 +41,7 @@ public class MainActivity extends AppCompatActivity
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -140,6 +148,7 @@ public class MainActivity extends AppCompatActivity
      * @param item
      * @return
      */
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -243,9 +252,9 @@ public class MainActivity extends AppCompatActivity
      *
      * @param view
      */
-    public void cardioOnClick(View view) {
+    public void latsOnClick(View view) {
         Intent intent = new Intent(MainActivity.this, IndividualActivity.class);
-        intent.putExtra(EXERCISE_STRING, "Cardio");
+        intent.putExtra(EXERCISE_STRING, "Lats");
         startActivity(intent);
     }
 }

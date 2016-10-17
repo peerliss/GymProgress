@@ -81,4 +81,6 @@
     <string name="password_short">Your password is too short, enter minimum 6 characters</string>
     <string name="confirm_password_mismatch">Password and confirm password do not match</string>
     <string name="enter_valid_email">Please enter valid email</string>
+    <string name="lats">Lats</string>
+    <string name="date_selected">"Date Selected: "</string>
 </resources>

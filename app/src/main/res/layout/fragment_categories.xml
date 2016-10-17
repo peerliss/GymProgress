@@ -212,13 +212,13 @@
                 android:layout_weight="1"
                 android:background="#9DB0C4"
                 android:gravity="center"
-                android:onClick="cardioOnClick"
+                android:onClick="latsOnClick"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/cardio"
+                    android:text="@string/lats"
                     android:textColor="@color/white"
                     android:textSize="22sp" />
 
